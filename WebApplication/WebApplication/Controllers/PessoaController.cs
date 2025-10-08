@@ -5,8 +5,9 @@ using WebApplication.Model;
 
 namespace WebApplication.Controllers
 {
+	[ApiVersion("1.0")]
 	[ApiController]
-	[Route("[controller]")]
+	[Route("api/[controller]/v{version:apiVersion}")]
 	public class PessoaController : ControllerBase
 	{
 		private readonly AppDbContext _context;

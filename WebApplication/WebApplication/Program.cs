@@ -9,6 +9,8 @@ var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddApiVersioning();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
