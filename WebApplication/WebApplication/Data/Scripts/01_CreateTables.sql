@@ -1,0 +1,7 @@
+﻿CREATE TABLE Pessoa (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nome VARCHAR(80) NOT NULL,
+    Sobrenome VARCHAR(80) NOT NULL,
+    Endereco VARCHAR(100) NULL,
+    Sexo VARCHAR(10) NOT NULL 
+);
