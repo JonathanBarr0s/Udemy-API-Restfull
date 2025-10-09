@@ -1,6 +1,7 @@
 ﻿using WebApplication.Controllers;
 using WebApplication.Data.Context;
 using WebApplication.Model;
+using WebApplication.Repository.Interfaces;
 
 namespace WebApplication.Repository.Implementations
 {

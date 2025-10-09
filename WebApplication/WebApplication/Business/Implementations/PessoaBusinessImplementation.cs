@@ -1,7 +1,8 @@
-﻿using WebApplication.Controllers;
+﻿using WebApplication.Business.Interfaces;
+using WebApplication.Controllers;
 using WebApplication.Data.Context;
 using WebApplication.Model;
-using WebApplication.Repository;
+using WebApplication.Repository.Interfaces;
 
 namespace WebApplication.Business.Implementations
 {

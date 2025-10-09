@@ -1,6 +1,6 @@
 ﻿using WebApplication.Model;
 
-namespace WebApplication.Repository
+namespace WebApplication.Repository.Interfaces
 {
 	public interface IPessoaRepository
 	{

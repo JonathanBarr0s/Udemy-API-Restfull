@@ -1,6 +1,6 @@
 ﻿using WebApplication.Model;
 
-namespace WebApplication.Business
+namespace WebApplication.Business.Interfaces
 {
 	public interface IPessoaBusiness
 	{

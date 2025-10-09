@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication.Business;
 using WebApplication.Business.Implementations;
+using WebApplication.Business.Interfaces;
 using WebApplication.Data.Context;
-using WebApplication.Repository;
 using WebApplication.Repository.Implementations;
+using WebApplication.Repository.Interfaces;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
