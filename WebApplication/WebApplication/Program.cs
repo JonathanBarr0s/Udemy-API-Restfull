@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication.Business;
+using WebApplication.Business.Implementations;
 using WebApplication.Data.Context;
+using WebApplication.Repository;
+using WebApplication.Repository.Implementations;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddApiVersioning();
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
+
+builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
 
 var app = builder.Build();
 

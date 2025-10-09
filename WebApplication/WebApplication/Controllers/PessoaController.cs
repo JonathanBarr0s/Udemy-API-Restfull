@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
+using WebApplication.Business;
 using WebApplication.Data.Context;
 using WebApplication.Model;
 
@@ -10,58 +11,46 @@ namespace WebApplication.Controllers
 	[Route("api/[controller]/v{version:apiVersion}")]
 	public class PessoaController : ControllerBase
 	{
-		private readonly AppDbContext _context;
+		private readonly IPessoaBusiness _pessoaBusiness;
 
 		private readonly ILogger<PessoaController> _logger;
 
-		public PessoaController(AppDbContext context, ILogger<PessoaController> logger)
+		public PessoaController(IPessoaBusiness pessoaBusiness, ILogger<PessoaController> logger)
 		{
-			_context = context;
+			_pessoaBusiness = pessoaBusiness;
 			_logger = logger;
 		}
 
 		[HttpGet]
 		public IActionResult ListarTodos()
 		{
-			return Ok(_context.Pessoa.ToList());
+			return Ok(_pessoaBusiness.FindAll());
 		}
 
 		[HttpGet("{id}")]
 		public IActionResult BuscarPorId(int id)
 		{
-			Pessoa pessoa = _context.Pessoa.FirstOrDefault(p => p.Id == id);
-			if (pessoa == null) return NotFound();
-			return Ok(pessoa);
+			return Ok(_pessoaBusiness.FindById(id));
 		}
 
 		[HttpPost]
 		public IActionResult CriarNovo([FromBody] Pessoa pessoa)
 		{
-			if (pessoa == null)	return BadRequest();
-			_context.Pessoa.Add(pessoa);
-			_context.SaveChanges();
-
-			return Created();
+			return Ok(_pessoaBusiness.Create(pessoa));
 		}
 
 		[HttpPut]
 		public IActionResult EditarPorId([FromBody] Pessoa pessoa)
 		{
-			if (pessoa == null)	return BadRequest();
-			_context.Update(pessoa);
-			_context.SaveChanges();
-			return NoContent();
+			return Ok(_pessoaBusiness.Update(pessoa));
 		}
 
 
 		[HttpDelete("{id}")]
 		public IActionResult Delete(int id)
 		{
-			Pessoa pessoa = _context.Pessoa.FirstOrDefault(p => p.Id == id);
-			if (pessoa == null)	return NotFound();
-			_context.Pessoa.Remove(pessoa);
-			_context.SaveChanges();
-			return Ok("Registro deletado com sucesso!");
+			_pessoaBusiness.Delete(id);
+			return NoContent();
 		}
 	}
 }
