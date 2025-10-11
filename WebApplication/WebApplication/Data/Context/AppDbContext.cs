@@ -8,5 +8,6 @@ namespace WebApplication.Data.Context
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
 		public DbSet<Pessoa> Pessoa { get; set; }
+		public DbSet<Livro> Livro { get; set; }
 	}
 }
