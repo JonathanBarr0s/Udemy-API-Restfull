@@ -21,6 +21,10 @@ builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
 
 builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
 
+builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
+
+builder.Services.AddScoped<ILivroRepository, LivroRepositoryImplementation>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
