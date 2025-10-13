@@ -1,5 +1,4 @@
-﻿using WebApplication.Model;
-using WebApplication.Model.Base;
+﻿using WebApplication.Model.Base;
 
 namespace WebApplication.Repository.Generic
 {

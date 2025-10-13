@@ -4,10 +4,10 @@ namespace WebApplication.Business.Interfaces
 {
 	public interface IPessoaBusiness
 	{
-		Pessoa Create(Pessoa pessoa);
-		Pessoa FindById(int id);
-		List<Pessoa> FindAll();
-		Pessoa Update(Pessoa pessoa);
-		void Delete(int id);
+		Task<Pessoa> CreateAsync(Pessoa pessoa);
+		Task<Pessoa> FindByIdAsync(int id);
+		Task<IEnumerable<Pessoa>> FindAllAsync();
+		Task<Pessoa> UpdateAsync(Pessoa pessoa);
+		Task DeleteAsync(int id);
 	}
 }

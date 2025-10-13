@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 using WebApplication.Data.Context;
 using WebApplication.Model.Base;
 
@@ -8,7 +7,6 @@ namespace WebApplication.Repository.Generic
 	public class GenericRepository<T> : IRepository<T> where T : BaseEntity
 	{
 		private readonly AppDbContext _context;
-
 		private readonly DbSet<T> _dbSet;
 
 		public GenericRepository(AppDbContext context)
@@ -26,7 +24,6 @@ namespace WebApplication.Repository.Generic
 				return item;
 			} catch (Exception)
 			{
-
 				throw;
 			}
 

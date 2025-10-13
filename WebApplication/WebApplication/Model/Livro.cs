@@ -1,10 +1,10 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebApplication.Model.Base;
 
 namespace WebApplication.Model
 {
+	[Table("Livro")]
 	public class Livro : BaseEntity
 	{
 		[StringLength(100, ErrorMessage = "O tamanho máximo é de 100 caracteres.")]

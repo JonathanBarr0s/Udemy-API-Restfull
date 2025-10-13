@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication.Model.Base;
 
 namespace WebApplication.Model
 {
 	[Table("Pessoa")]
-	public class Pessoa
+	public class Pessoa : BaseEntity
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[StringLength(80, ErrorMessage = "O tamanho máximo é de 80 caracteres.")]
 		[Required(ErrorMessage = "O campo Nome não pode estar vazio.")]
 		[Display(Name = "Nome")]

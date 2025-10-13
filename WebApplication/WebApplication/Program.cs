@@ -3,8 +3,6 @@ using WebApplication.Business.Implementations;
 using WebApplication.Business.Interfaces;
 using WebApplication.Data.Context;
 using WebApplication.Repository.Generic;
-using WebApplication.Repository.Implementations;
-using WebApplication.Repository.Interfaces;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -19,7 +17,6 @@ builder.Services.AddApiVersioning();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
-builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementation>();
 builder.Services.AddScoped<ILivroBusiness, LivroBusinessImplementation>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
@@ -35,9 +32,6 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

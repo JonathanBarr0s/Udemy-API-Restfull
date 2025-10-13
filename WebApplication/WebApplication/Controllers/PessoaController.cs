@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
 using WebApplication.Business.Interfaces;
-using WebApplication.Data.Context;
 using WebApplication.Model;
 
 namespace WebApplication.Controllers
@@ -12,7 +10,6 @@ namespace WebApplication.Controllers
 	public class PessoaController : ControllerBase
 	{
 		private readonly IPessoaBusiness _pessoaBusiness;
-
 		private readonly ILogger<PessoaController> _logger;
 
 		public PessoaController(IPessoaBusiness pessoaBusiness, ILogger<PessoaController> logger)
@@ -22,34 +19,34 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult ListarTodos()
+		public async Task<IActionResult> FindAllAsync()
 		{
-			return Ok(_pessoaBusiness.FindAll());
+			return Ok(await _pessoaBusiness.FindAllAsync());
 		}
 
 		[HttpGet("{id}")]
-		public IActionResult BuscarPorId(int id)
+		public async Task<IActionResult> FindByIdAsync(int id)
 		{
-			return Ok(_pessoaBusiness.FindById(id));
+			return Ok(await _pessoaBusiness.FindByIdAsync(id));
 		}
 
 		[HttpPost]
-		public IActionResult CriarNovo([FromBody] Pessoa pessoa)
+		public async Task<IActionResult> CreateAsync([FromBody] Pessoa pessoa)
 		{
-			return Ok(_pessoaBusiness.Create(pessoa));
+			return Ok(await _pessoaBusiness.CreateAsync(pessoa));
 		}
 
 		[HttpPut]
-		public IActionResult EditarPorId([FromBody] Pessoa pessoa)
+		public async Task<IActionResult> UpdateAsync([FromBody] Pessoa pessoa)
 		{
-			return Ok(_pessoaBusiness.Update(pessoa));
+			return Ok(await _pessoaBusiness.UpdateAsync(pessoa));
 		}
 
 
 		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
+		public async Task<IActionResult> DeleteAsync(int id)
 		{
-			_pessoaBusiness.Delete(id);
+			await _pessoaBusiness.DeleteAsync(id);
 			return NoContent();
 		}
 	}

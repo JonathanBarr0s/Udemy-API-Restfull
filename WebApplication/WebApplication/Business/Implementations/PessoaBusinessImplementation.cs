@@ -1,44 +1,41 @@
 ﻿using WebApplication.Business.Interfaces;
-using WebApplication.Controllers;
-using WebApplication.Data.Context;
 using WebApplication.Model;
 using WebApplication.Repository.Generic;
-using WebApplication.Repository.Interfaces;
 
 namespace WebApplication.Business.Implementations
 {
 	public class PessoaBusinessImplementation : IPessoaBusiness
 	{
-		private readonly IPessoaRepository _pessoaRepository;
+		private readonly IRepository<Pessoa> _repository;
 
-		public PessoaBusinessImplementation(IPessoaRepository repository)
+		public PessoaBusinessImplementation(IRepository<Pessoa> repository)
 		{
-			_pessoaRepository = repository;
+			_repository = repository;
 		}
 
-		public Pessoa Create(Pessoa pessoa)
+		public async Task<Pessoa> CreateAsync(Pessoa pessoa)
 		{
-			return _pessoaRepository.Create(pessoa);
+			return await _repository.CreateAsync(pessoa);
 		}
 
-		public void Delete(int id)
+		public async Task DeleteAsync(int id)
 		{
-			_pessoaRepository.Delete(id);
+			await _repository.DeleteAsync(id);
 		}
 
-		public List<Pessoa> FindAll()
+		public async Task<IEnumerable<Pessoa>> FindAllAsync()
 		{
-			return _pessoaRepository.FindAll();
+			return await _repository.FindAllAsync();
 		}
 
-		public Pessoa FindById(int id)
+		public async Task<Pessoa> FindByIdAsync(int id)
 		{
-			return _pessoaRepository.FindById(id);
+			return await _repository.FindByIdAsync(id);
 		}
 
-		public Pessoa Update(Pessoa pessoa)
+		public async Task<Pessoa> UpdateAsync(Pessoa pessoa)
 		{
-			return _pessoaRepository.Update(pessoa);
+			return await _repository.UpdateAsync(pessoa);
 		}
 	}
 }
