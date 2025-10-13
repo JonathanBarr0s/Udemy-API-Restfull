@@ -12,7 +12,6 @@ namespace WebApplication.Controllers
 	public class LivroController : ControllerBase
 	{
 		private readonly ILivroBusiness _livroBusiness;
-
 		private readonly ILogger<LivroController> _logger;
 
 		public LivroController(ILivroBusiness livroBusiness, ILogger<LivroController> logger)
@@ -22,34 +21,33 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult ListarTodos()
+		public async Task<IActionResult> FindAllAsync()
 		{
-			return Ok(_livroBusiness.FindAll());
+			return Ok(await _livroBusiness.FindAllAsync());
 		}
 
 		[HttpGet("{id}")]
-		public IActionResult BuscarPorId(int id)
+		public async Task<IActionResult> FindByIdAsync(int id)
 		{
-			return Ok(_livroBusiness.FindById(id));
+			return Ok(await _livroBusiness.FindByIdAsync(id));
 		}
 
 		[HttpPost]
-		public IActionResult CriarNovo([FromBody] Livro livro)
+		public async Task<IActionResult> CreateAsync([FromBody] Livro livro)
 		{
-			return Ok(_livroBusiness.Create(livro));
+			return Ok(await _livroBusiness.CreateAsync(livro));
 		}
 
 		[HttpPut]
-		public IActionResult EditarPorId([FromBody] Livro livro)
+		public async Task<IActionResult> UpdateAsync([FromBody] Livro livro)
 		{
-			return Ok(_livroBusiness.Update(livro));
+			return Ok(await _livroBusiness.UpdateAsync(livro));
 		}
 
-
 		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
+		public async Task<IActionResult> DeleteAsync(int id)
 		{
-			_livroBusiness.Delete(id);
+			await _livroBusiness.DeleteAsync(id);
 			return NoContent();
 		}
 	}

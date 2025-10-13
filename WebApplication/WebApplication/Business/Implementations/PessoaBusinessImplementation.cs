@@ -2,6 +2,7 @@
 using WebApplication.Controllers;
 using WebApplication.Data.Context;
 using WebApplication.Model;
+using WebApplication.Repository.Generic;
 using WebApplication.Repository.Interfaces;
 
 namespace WebApplication.Business.Implementations

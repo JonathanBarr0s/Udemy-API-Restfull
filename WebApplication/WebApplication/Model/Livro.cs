@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication.Model.Base;
 
 namespace WebApplication.Model
 {
-	public class Livro
+	public class Livro : BaseEntity
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[StringLength(100, ErrorMessage = "O tamanho máximo é de 100 caracteres.")]
 		[Required(ErrorMessage = "O campo Título é obrigatório.")]
 		[Display(Name = "Título")]

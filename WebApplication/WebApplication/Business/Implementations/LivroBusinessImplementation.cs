@@ -2,42 +2,43 @@
 using WebApplication.Controllers;
 using WebApplication.Data.Context;
 using WebApplication.Model;
+using WebApplication.Repository.Generic;
 using WebApplication.Repository.Interfaces;
 
 namespace WebApplication.Business.Implementations
 {
 	public class LivroBusinessImplementation : ILivroBusiness
 	{
-		private readonly ILivroRepository _livroRepository;
+		private readonly IRepository<Livro> _repository;
 
-		public LivroBusinessImplementation(ILivroRepository repository)
+		public LivroBusinessImplementation(IRepository<Livro> repository)
 		{
-			_livroRepository = repository;
+			_repository = repository;
 		}
 
-		public Livro Create(Livro livro)
+		public async Task<Livro> CreateAsync(Livro livro)
 		{
-			return _livroRepository.Create(livro);
+			return await _repository.CreateAsync(livro);
 		}
 
-		public void Delete(int id)
+		public async Task DeleteAsync(int id)
 		{
-			_livroRepository.Delete(id);
+			await _repository.DeleteAsync(id);
 		}
 
-		public List<Livro> FindAll()
+		public async Task<IEnumerable<Livro>> FindAllAsync()
 		{
-			return _livroRepository.FindAll();
+			return await _repository.FindAllAsync();
 		}
 
-		public Livro FindById(int id)
+		public async Task<Livro> FindByIdAsync(int id)
 		{
-			return _livroRepository.FindById(id);
+			return await _repository.FindByIdAsync(id);
 		}
 
-		public Livro Update(Livro pessoa)
+		public async Task<Livro> UpdateAsync(Livro livro)
 		{
-			return _livroRepository.Update(pessoa);
+			return await _repository.UpdateAsync(livro);
 		}
 	}
 }
