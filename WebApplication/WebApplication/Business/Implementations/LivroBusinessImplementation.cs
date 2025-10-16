@@ -1,4 +1,6 @@
 ﻿using WebApplication.Business.Interfaces;
+using WebApplication.Data.Converter.Implementations;
+using WebApplication.Data.VO;
 using WebApplication.Model;
 using WebApplication.Repository.Generic;
 
@@ -7,15 +9,19 @@ namespace WebApplication.Business.Implementations
 	public class LivroBusinessImplementation : ILivroBusiness
 	{
 		private readonly IRepository<Livro> _repository;
+		private readonly LivroConverter _livroConverter;
 
 		public LivroBusinessImplementation(IRepository<Livro> repository)
 		{
 			_repository = repository;
+			_livroConverter = new LivroConverter();
 		}
 
-		public async Task<Livro> CreateAsync(Livro livro)
+		public async Task<LivroVO> CreateAsync(LivroVO livro)
 		{
-			return await _repository.CreateAsync(livro);
+			var livroEntity = _livroConverter.Parse(livro);
+			livroEntity = await _repository.CreateAsync(livroEntity);
+			return _livroConverter.Parse(livroEntity);
 		}
 
 		public async Task DeleteAsync(int id)
@@ -23,19 +29,21 @@ namespace WebApplication.Business.Implementations
 			await _repository.DeleteAsync(id);
 		}
 
-		public async Task<IEnumerable<Livro>> FindAllAsync()
+		public async Task<IEnumerable<LivroVO>> FindAllAsync()
 		{
-			return await _repository.FindAllAsync();
+			return _livroConverter.Parse((await _repository.FindAllAsync()).ToList());
 		}
 
-		public async Task<Livro> FindByIdAsync(int id)
+		public async Task<LivroVO> FindByIdAsync(int id)
 		{
-			return await _repository.FindByIdAsync(id);
+			return _livroConverter.Parse(await _repository.FindByIdAsync(id));
 		}
 
-		public async Task<Livro> UpdateAsync(Livro livro)
+		public async Task<LivroVO> UpdateAsync(LivroVO livro)
 		{
-			return await _repository.UpdateAsync(livro);
+			var livroEntity = _livroConverter.Parse(livro);
+			livroEntity = await _repository.UpdateAsync(livroEntity);
+			return _livroConverter.Parse(livroEntity);
 		}
 	}
 }

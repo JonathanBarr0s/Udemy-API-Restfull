@@ -1,13 +1,14 @@
-﻿using WebApplication.Model;
+﻿using WebApplication.Data.VO;
+using WebApplication.Model;
 
 namespace WebApplication.Business.Interfaces
 {
 	public interface ILivroBusiness
 	{
-		Task<Livro> CreateAsync(Livro livro);
-		Task<Livro> FindByIdAsync(int id);
-		Task<IEnumerable<Livro>> FindAllAsync();
-		Task<Livro> UpdateAsync(Livro livro);
+		Task<LivroVO> CreateAsync(LivroVO livro);
+		Task<LivroVO> FindByIdAsync(int id);
+		Task<IEnumerable<LivroVO>> FindAllAsync();
+		Task<LivroVO> UpdateAsync(LivroVO livro);
 		Task DeleteAsync(int id);
 	}
 }

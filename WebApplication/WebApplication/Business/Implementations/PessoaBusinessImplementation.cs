@@ -1,4 +1,6 @@
 ﻿using WebApplication.Business.Interfaces;
+using WebApplication.Data.Converter.Implementations;
+using WebApplication.Data.VO;
 using WebApplication.Model;
 using WebApplication.Repository.Generic;
 
@@ -7,15 +9,19 @@ namespace WebApplication.Business.Implementations
 	public class PessoaBusinessImplementation : IPessoaBusiness
 	{
 		private readonly IRepository<Pessoa> _repository;
+		private readonly PessoaConverter _pessoaConverter;
 
 		public PessoaBusinessImplementation(IRepository<Pessoa> repository)
 		{
 			_repository = repository;
+			_pessoaConverter = new PessoaConverter();
 		}
 
-		public async Task<Pessoa> CreateAsync(Pessoa pessoa)
+		public async Task<PessoaVO> CreateAsync(PessoaVO pessoa)
 		{
-			return await _repository.CreateAsync(pessoa);
+			var pessoaEntity = _pessoaConverter.Parse(pessoa);
+			pessoaEntity = await _repository.CreateAsync(pessoaEntity);
+			return _pessoaConverter.Parse(pessoaEntity);
 		}
 
 		public async Task DeleteAsync(int id)
@@ -23,19 +29,21 @@ namespace WebApplication.Business.Implementations
 			await _repository.DeleteAsync(id);
 		}
 
-		public async Task<IEnumerable<Pessoa>> FindAllAsync()
+		public async Task<IEnumerable<PessoaVO>> FindAllAsync()
 		{
-			return await _repository.FindAllAsync();
+			return _pessoaConverter.Parse((await _repository.FindAllAsync()).ToList());
 		}
 
-		public async Task<Pessoa> FindByIdAsync(int id)
+		public async Task<PessoaVO> FindByIdAsync(int id)
 		{
-			return await _repository.FindByIdAsync(id);
+			return _pessoaConverter.Parse(await _repository.FindByIdAsync(id));
 		}
 
-		public async Task<Pessoa> UpdateAsync(Pessoa pessoa)
+		public async Task<PessoaVO> UpdateAsync(PessoaVO pessoa)
 		{
-			return await _repository.UpdateAsync(pessoa);
+			var pessoaEntity = _pessoaConverter.Parse(pessoa);
+			pessoaEntity = await _repository.UpdateAsync(pessoaEntity);
+			return _pessoaConverter.Parse(pessoaEntity);
 		}
 	}
 }

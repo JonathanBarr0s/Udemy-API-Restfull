@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApplication.Data.VO;
 using WebApplication.Model;
 
 namespace WebApplication.Data.Context

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Business.Interfaces;
+using WebApplication.Data.VO;
 using WebApplication.Model;
 
 namespace WebApplication.Controllers
@@ -31,13 +32,13 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateAsync([FromBody] Livro livro)
+		public async Task<IActionResult> CreateAsync([FromBody] LivroVO livro)
 		{
 			return Ok(await _livroBusiness.CreateAsync(livro));
 		}
 
 		[HttpPut]
-		public async Task<IActionResult> UpdateAsync([FromBody] Livro livro)
+		public async Task<IActionResult> UpdateAsync([FromBody] LivroVO livro)
 		{
 			return Ok(await _livroBusiness.UpdateAsync(livro));
 		}
