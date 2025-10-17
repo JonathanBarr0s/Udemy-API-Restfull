@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 using WebApplication.Business.Implementations;
 using WebApplication.Business.Interfaces;
 using WebApplication.Data.Context;
@@ -11,6 +12,13 @@ var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddMvc(options =>
+{
+	options.RespectBrowserAcceptHeader = true;
+	options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
+	options.FormatterMappings.SetMediaTypeMappingForFormat("json", "application/json");
+}).AddXmlSerializerFormatters();
 
 builder.Services.AddApiVersioning();
 
