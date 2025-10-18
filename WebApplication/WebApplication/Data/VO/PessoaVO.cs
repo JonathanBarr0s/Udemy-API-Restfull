@@ -1,8 +1,10 @@
 ﻿using System.Text.Json.Serialization;
+using WebApplication.Hypermedia;
+using WebApplication.Hypermedia.Abstract;
 
 namespace WebApplication.Data.VO
 {
-	public class PessoaVO
+	public class PessoaVO : ISupportsHyperMedia
 	{
 		[JsonPropertyName("Id")]
 		public int Id { get; set; }
@@ -18,5 +20,6 @@ namespace WebApplication.Data.VO
 
 		[JsonPropertyName("Sex")]
 		public string Sexo { get; set; }
+		public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
 	}
 }

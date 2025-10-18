@@ -1,8 +1,10 @@
 ﻿using System.Text.Json.Serialization;
+using WebApplication.Hypermedia;
+using WebApplication.Hypermedia.Abstract;
 
 namespace WebApplication.Data.VO
 {
-	public class LivroVO
+	public class LivroVO : ISupportsHyperMedia
 	{
 		[JsonPropertyName("Id")]
 		public int Id { get; set; }
@@ -18,5 +20,6 @@ namespace WebApplication.Data.VO
 
 		[JsonPropertyName("Price")]
 		public decimal Preco { get; set; }
+		public List<HyperMediaLink> Links { get ; set; } = new List<HyperMediaLink>();
 	}
 }

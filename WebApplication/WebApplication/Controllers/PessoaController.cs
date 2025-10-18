@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Business.Interfaces;
 using WebApplication.Data.VO;
+using WebApplication.Hypermedia.Filters;
 using WebApplication.Model;
 
 namespace WebApplication.Controllers
@@ -20,24 +21,28 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet]
+		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> FindAllAsync()
 		{
 			return Ok(await _pessoaBusiness.FindAllAsync());
 		}
 
 		[HttpGet("{id}")]
+		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> FindByIdAsync(int id)
 		{
 			return Ok(await _pessoaBusiness.FindByIdAsync(id));
 		}
 
 		[HttpPost]
+		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> CreateAsync([FromBody] PessoaVO pessoa)
 		{
 			return Ok(await _pessoaBusiness.CreateAsync(pessoa));
 		}
 
 		[HttpPut]
+		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> UpdateAsync([FromBody] PessoaVO pessoa)
 		{
 			return Ok(await _pessoaBusiness.UpdateAsync(pessoa));

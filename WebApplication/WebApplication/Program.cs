@@ -3,6 +3,8 @@ using System.Net.Http.Headers;
 using WebApplication.Business.Implementations;
 using WebApplication.Business.Interfaces;
 using WebApplication.Data.Context;
+using WebApplication.Hypermedia.Enricher;
+using WebApplication.Hypermedia.Filters;
 using WebApplication.Repository.Generic;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
@@ -19,6 +21,11 @@ builder.Services.AddMvc(options =>
 	options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
 	options.FormatterMappings.SetMediaTypeMappingForFormat("json", "application/json");
 }).AddXmlSerializerFormatters();
+
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+
+builder.Services.AddSingleton(filterOptions);
 
 builder.Services.AddApiVersioning();
 
@@ -42,4 +49,5 @@ using (var scope = app.Services.CreateScope())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
 app.Run();
