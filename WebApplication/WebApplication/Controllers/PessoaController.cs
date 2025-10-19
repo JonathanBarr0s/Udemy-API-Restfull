@@ -21,6 +21,10 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet]
+		[ProducesResponseType((200), Type = typeof(List<PessoaVO>))]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
 		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> FindAllAsync()
 		{
@@ -28,6 +32,10 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpGet("{id}")]
+		[ProducesResponseType((200), Type = typeof(PessoaVO))]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
 		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> FindByIdAsync(int id)
 		{
@@ -35,6 +43,9 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPost]
+		[ProducesResponseType((200), Type = typeof(PessoaVO))]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
 		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> CreateAsync([FromBody] PessoaVO pessoa)
 		{
@@ -42,6 +53,9 @@ namespace WebApplication.Controllers
 		}
 
 		[HttpPut]
+		[ProducesResponseType((200), Type = typeof(PessoaVO))]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
 		[TypeFilter(typeof(HyperMediaFilter))]
 		public async Task<IActionResult> UpdateAsync([FromBody] PessoaVO pessoa)
 		{
@@ -50,6 +64,9 @@ namespace WebApplication.Controllers
 
 
 		[HttpDelete("{id}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(401)]
 		public async Task<IActionResult> DeleteAsync(int id)
 		{
 			await _pessoaBusiness.DeleteAsync(id);

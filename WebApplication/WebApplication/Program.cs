@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
 using WebApplication.Business.Implementations;
@@ -29,6 +31,15 @@ builder.Services.AddSingleton(filterOptions);
 
 builder.Services.AddApiVersioning();
 
+builder.Services.AddSwaggerGen(c =>
+{
+	c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+	{
+		Title = "Restful API",
+		Version = "v1",
+	});
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementation>();
@@ -48,6 +59,16 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+	c.SwaggerEndpoint("/swagger/v1/swagger.json", "Restful API v1");
+});
+
+var option = new RewriteOptions();
+option.AddRedirect("^$", "swagger");
+
+app.UseRewriter(option);
 app.MapControllers();
 app.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
 app.Run();
