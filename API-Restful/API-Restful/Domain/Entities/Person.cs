@@ -15,10 +15,10 @@ namespace API_Restful.Domain.Entities
 		[Required, MaxLength(80), Column("LastName", TypeName = "varchar(80)")]
 		public string LastName { get; set; }
 
-		[Required, MaxLength(80), Column("Address", TypeName = "varchar(100)")]
+		[Required, MaxLength(100), Column("Address", TypeName = "varchar(100)")]
 		public string Address { get; set; }
 
-		[Required, MaxLength(80), Column("Gender", TypeName = "varchar(6)")]
+		[Required, MaxLength(6), Column("Gender", TypeName = "varchar(6)")]
 		public string Gender { get; set; }
 	}
 }

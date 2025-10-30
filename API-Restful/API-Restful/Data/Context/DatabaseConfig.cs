@@ -7,11 +7,11 @@ namespace API_Restful.Data.Context
 		public static IServiceCollection AddDatabaseConfiguration(
 			this IServiceCollection services, IConfiguration configuration)
 		{
-			var connectionString = configuration["MSSQLServerSQLConnection:MSSQLServerSQLConnectionString"];
+			var connectionString = configuration["ConnectionStrings:DefaultConnection"];
 
 			if (string.IsNullOrEmpty(connectionString))
 			{
-				throw new ArgumentNullException("Connection string 'MSSQLServerSQLConnectionString' not found.");
+				throw new ArgumentNullException("Connection string 'DefaultConnection' not found.");
 			}
 
 			services.AddDbContext<AppDbContext>(options =>

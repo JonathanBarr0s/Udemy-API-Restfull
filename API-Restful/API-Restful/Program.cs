@@ -1,4 +1,8 @@
+using API_Restful.Business.Implementations;
+using API_Restful.Business.Interfaces;
 using API_Restful.Data.Context;
+using API_Restful.Data.Repository.Implementations;
+using API_Restful.Data.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
+
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 
