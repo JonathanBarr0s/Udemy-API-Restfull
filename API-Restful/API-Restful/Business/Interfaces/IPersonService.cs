@@ -4,13 +4,13 @@ namespace API_Restful.Business.Interfaces
 {
 	public interface IPersonService
 	{
-		Person Create(Person person);
+		PersonDTO Create(PersonDTO personDTO);
 
-		Person FindById(int id);
+		PersonDTO FindById(int id);
 
-		List<Person> FindAll();
+		List<PersonDTO> FindAll();
 
-		Person Update(Person person);
+		PersonDTO Update(PersonDTO personDTO);
 
 		void Delete(int id);
 	}

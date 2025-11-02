@@ -1,4 +1,5 @@
 ﻿using API_Restful.Business.Interfaces;
+using API_Restful.Data.Converter.Implementations;
 using API_Restful.Data.Repository.Interfaces;
 using API_Restful.Domain.Entities;
 
@@ -7,30 +8,38 @@ namespace API_Restful.Business.Implementations
 	public class PersonService : IPersonService
 	{
 		private IRepository<Person> _repository;
+		private readonly PersonConverter _personConverter;
 
 		public PersonService(IRepository<Person> repository)
 		{
 			_repository = repository;
+			_personConverter = new PersonConverter();
 		}
 
-		public List<Person> FindAll()
+		public List<PersonDTO> FindAll()
 		{
-			return _repository.FindAll();
+			return _personConverter.ParseList(_repository.FindAll());
 		}
 
-		public Person FindById(int id)
+		public PersonDTO FindById(int id)
 		{
-			return _repository.FindById(id);
+			return _personConverter.Parse(_repository.FindById(id));
 		}
 
-		public Person Create(Person person)
+		public PersonDTO Create(PersonDTO personDTO)
 		{
-			return _repository.Create(person);
+			var entity = _personConverter.Parse(personDTO);
+			entity = _repository.Create(entity);
+
+			return _personConverter.Parse(entity);
 		}
 
-		public Person Update(Person person)
+		public PersonDTO Update(PersonDTO personDTO)
 		{
-			return _repository.Update(person);
+			var entity = _personConverter.Parse(personDTO);
+			entity = _repository.Update(entity);
+
+			return _personConverter.Parse(entity);
 		}
 		public void Delete(int id)
 		{

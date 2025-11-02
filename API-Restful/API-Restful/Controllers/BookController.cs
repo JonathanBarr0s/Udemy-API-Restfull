@@ -36,9 +36,9 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Post([FromBody] Book book)
+		public IActionResult Post([FromBody] BookDTO bookDTO)
 		{
-			var createdBook = _bookService.Create(book);
+			var createdBook = _bookService.Create(bookDTO);
 			if (createdBook == null)
 			{
 				return NotFound();
@@ -47,9 +47,9 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpPut]
-		public IActionResult Put([FromBody] Book book)
+		public IActionResult Put([FromBody] BookDTO bookDTO)
 		{
-			var createdBook = _bookService.Update(book);
+			var createdBook = _bookService.Update(bookDTO);
 			if (createdBook == null)
 			{
 				return NotFound();

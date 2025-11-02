@@ -1,4 +1,5 @@
 ﻿using API_Restful.Business.Interfaces;
+using API_Restful.Data.Converter.Implementations;
 using API_Restful.Data.Repository.Interfaces;
 using API_Restful.Domain.Entities;
 
@@ -7,30 +8,38 @@ namespace API_Restful.Business.Implementations
 	public class BookService : IBookService
 	{
 		private IRepository<Book> _repository;
+		private readonly BookConverter _bookConverter;
 
 		public BookService(IRepository<Book> repository)
 		{
 			_repository = repository;
+			_bookConverter = new BookConverter();
 		}
 
-		public List<Book> FindAll()
+		public List<BookDTO> FindAll()
 		{
-			return _repository.FindAll();
+			return _bookConverter.ParseList(_repository.FindAll());
 		}
 
-		public Book FindById(int id)
+		public BookDTO FindById(int id)
 		{
-			return _repository.FindById(id);
+			return _bookConverter.Parse(_repository.FindById(id));
 		}
 
-		public Book Create(Book book)
+		public BookDTO Create(BookDTO bookDTO)
 		{
-			return _repository.Create(book);
+			var entity = _bookConverter.Parse(bookDTO);
+			entity = _repository.Create(entity);
+
+			return _bookConverter.Parse(entity);
 		}
 
-		public Book Update(Book book)
+		public BookDTO Update(BookDTO bookDTO)
 		{
-			return _repository.Update(book);
+			var entity = _bookConverter.Parse(bookDTO);
+			entity = _repository.Update(entity);
+
+			return _bookConverter.Parse(entity);
 		}
 		public void Delete(int id)
 		{

@@ -4,13 +4,13 @@ namespace API_Restful.Business.Interfaces
 {
 	public interface IBookService
 	{
-		Book Create(Book book);
+		BookDTO Create(BookDTO bookDTO);
 
-		Book FindById(int id);
+		BookDTO FindById(int id);
 
-		List<Book> FindAll();
+		List<BookDTO> FindAll();
 
-		Book Update(Book book);
+		BookDTO Update(BookDTO bookDTO);
 
 		void Delete(int id);
 	}

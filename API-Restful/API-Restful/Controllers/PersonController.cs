@@ -36,9 +36,9 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Post([FromBody] Person person)
+		public IActionResult Post([FromBody] PersonDTO personDTO)
 		{
-			var createdPerson = _personService.Create(person);
+			var createdPerson = _personService.Create(personDTO);
 			if (createdPerson == null)
 			{
 				return NotFound();
@@ -47,9 +47,9 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpPut]
-		public IActionResult Put([FromBody] Person person)
+		public IActionResult Put([FromBody] PersonDTO personDTO)
 		{
-			var createdPerson = _personService.Update(person);
+			var createdPerson = _personService.Update(personDTO);
 			if (createdPerson == null)
 			{
 				return NotFound();
