@@ -6,12 +6,12 @@ namespace API_Restful.Business.Interfaces
 	{
 		Book Create(Book book);
 
-		Book FindById(long id);
+		Book FindById(int id);
 
 		List<Book> FindAll();
 
 		Book Update(Book book);
 
-		void Delete(long id);
+		void Delete(int id);
 	}
 }

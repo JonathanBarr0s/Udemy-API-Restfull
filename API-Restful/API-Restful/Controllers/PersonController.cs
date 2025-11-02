@@ -25,7 +25,7 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public IActionResult Get(long id)
+		public IActionResult Get(int id)
 		{
 			var person = _personService.FindById(id);
 			if (person == null)

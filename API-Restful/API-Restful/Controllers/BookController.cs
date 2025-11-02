@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API_Restful.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("[controller]")]
 	public class BookController : ControllerBase
 	{
 		private IBookService _bookService;
@@ -25,7 +25,7 @@ namespace API_Restful.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public IActionResult Get(long id)
+		public IActionResult Get(int id)
 		{
 			var book = _bookService.FindById(id);
 			if (book == null)

@@ -6,9 +6,9 @@ namespace API_Restful.Business.Implementations
 {
 	public class BookService : IBookService
 	{
-		private IBookRepository _repository;
+		private IRepository<Book> _repository;
 
-		public BookService(IBookRepository repository)
+		public BookService(IRepository<Book> repository)
 		{
 			_repository = repository;
 		}
@@ -18,7 +18,7 @@ namespace API_Restful.Business.Implementations
 			return _repository.FindAll();
 		}
 
-		public Book FindById(long id)
+		public Book FindById(int id)
 		{
 			return _repository.FindById(id);
 		}
@@ -32,7 +32,7 @@ namespace API_Restful.Business.Implementations
 		{
 			return _repository.Update(book);
 		}
-		public void Delete(long id)
+		public void Delete(int id)
 		{
 			_repository.Delete(id);
 		}

@@ -1,14 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using API_Restful.Domain.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_Restful.Domain.Entities
 {
 	[Table("Book")]
-	public class Book
-	{
-		[Key, Column("id")]	
-		public long Id { get; set; }
-
+	public class Book : BaseEntity
+	{		
 		[Required, Column("title", TypeName = "varchar(MAX)")]
 		public string Title { get; set; }
 

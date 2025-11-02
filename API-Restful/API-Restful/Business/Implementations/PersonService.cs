@@ -6,9 +6,9 @@ namespace API_Restful.Business.Implementations
 {
 	public class PersonService : IPersonService
 	{
-		private IPersonRepository _repository;
+		private IRepository<Person> _repository;
 
-		public PersonService(IPersonRepository repository)
+		public PersonService(IRepository<Person> repository)
 		{
 			_repository = repository;
 		}
@@ -18,7 +18,7 @@ namespace API_Restful.Business.Implementations
 			return _repository.FindAll();
 		}
 
-		public Person FindById(long id)
+		public Person FindById(int id)
 		{
 			return _repository.FindById(id);
 		}
@@ -32,7 +32,7 @@ namespace API_Restful.Business.Implementations
 		{
 			return _repository.Update(person);
 		}
-		public void Delete(long id)
+		public void Delete(int id)
 		{
 			_repository.Delete(id);
 		}
