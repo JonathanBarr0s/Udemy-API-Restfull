@@ -1,4 +1,4 @@
-﻿namespace API_Restful.Domain.Entities
+﻿namespace API_Restful.Data.DTO
 {
 	public class BookDTO
 	{

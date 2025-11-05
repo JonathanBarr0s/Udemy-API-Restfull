@@ -18,5 +18,8 @@ namespace API_Restful.Domain.Entities
 
 		[Required, MaxLength(6), Column("Gender", TypeName = "varchar(6)")]
 		public string Gender { get; set; }
+
+		//[NotMapped]
+		//public DateTime BirthDay { get; set; }
 	}
 }

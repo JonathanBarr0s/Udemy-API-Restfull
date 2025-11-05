@@ -1,4 +1,4 @@
-﻿using API_Restful.Domain.Entities;
+﻿using API_Restful.Data.DTO;
 
 namespace API_Restful.Business.Interfaces
 {

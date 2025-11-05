@@ -1,6 +1,6 @@
 using API_Restful.Business.Implementations;
 using API_Restful.Business.Interfaces;
-using API_Restful.Domain.Entities;
+using API_Restful.Data.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Restful.Controllers

@@ -1,4 +1,5 @@
 ﻿using API_Restful.Data.Converter.Contract;
+using API_Restful.Data.DTO;
 using API_Restful.Domain.Entities;
 
 namespace API_Restful.Data.Converter.Implementations
