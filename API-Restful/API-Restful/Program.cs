@@ -1,5 +1,6 @@
 using API_Restful.Business.Implementations;
 using API_Restful.Business.Interfaces;
+using API_Restful.Data.ContentNegotiation;
 using API_Restful.Data.Context;
 using API_Restful.Data.Repository.Implementations;
 using API_Restful.Data.Repository.Interfaces;
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddContentNegotiation();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
