@@ -16,8 +16,23 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
-    - api-network  
+    - api-network
+    
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - api-network
+  
 
 networks:
   api-network:
     driver: bridge
+
+volumes:
+  portainer_data:
