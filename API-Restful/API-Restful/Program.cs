@@ -22,10 +22,17 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+	app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+var port = Environment.GetEnvironmentVariable("port") ?? "8080";
+
+app.Run($"http://*:{port}");
+
+// app.Run();
