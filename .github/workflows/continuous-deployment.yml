@@ -52,7 +52,7 @@ jobs:
 
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag ${{secrets.DOCKER_USERNAME}}/apirestful:dev ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
+        docker tag ${{secrets.DOCKER_USERNAME}}/apirestful:latest ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
 
-        docker push ${{secrets.DOCKER_USERNAME}}/apirestful:dev
+        docker push ${{secrets.DOCKER_USERNAME}}/apirestful:latest
         docker push ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
