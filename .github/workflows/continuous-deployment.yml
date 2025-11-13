@@ -49,3 +49,10 @@ jobs:
     - name: Docker Compose Build
       run: docker compose build
       working-directory: ./API-Restful
+
+    - name: Push to Docker Hub Container Registry
+      run: |
+        docker tag ${{secrets.DOCKER_USERNAME}}/apirestful:dev ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
+
+        docker push ${{secrets.DOCKER_USERNAME}}/apirestful:dev
+        docker push ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
