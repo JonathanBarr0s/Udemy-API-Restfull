@@ -43,16 +43,16 @@ jobs:
 
     - name: Restore Dependencies
       run: dotnet restore API-Restful.sln
-      working-directory: Udemy-API-Restfull/API-Restful
+      working-directory: Udemy-API-Restfull/API-Restful/
 
     - name: Build ASP.NET 8 App
       run: dotnet build API-Restful.sln --configuration Release --no-restore
-      working-directory: Udemy-API-Restfull/API-Restful
+      working-directory: Udemy-API-Restfull/API-Restful/
       
     - name: Test ASP.NET 8 App
       run: dotnet test API-Restful.sln --configuration Release --no-build --logger "console;verbosity=detailed"
-      working-directory: Udemy-API-Restfull/API-Restful
+      working-directory: Udemy-API-Restfull/API-Restful/
 
     - name: Docker Compose Build
       run: docker compose build
-      working-directory: Udemy-API-Restfull/API-Restful
+      working-directory: Udemy-API-Restfull/API-Restful/
