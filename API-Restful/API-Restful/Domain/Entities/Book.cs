@@ -7,10 +7,10 @@ namespace API_Restful.Domain.Entities
 	[Table("Book")]
 	public class Book : BaseEntity
 	{		
-		[Required, Column("title", TypeName = "varchar(MAX)")]
+		[Required, Column("title", TypeName = "text")]
 		public string Title { get; set; }
 
-		[Required, Column("author", TypeName = "varchar(MAX)")]
+		[Required, Column("author", TypeName = "text")]
 		public string Author { get; set; }
 
 		[Required, Column("price")]

@@ -5,13 +5,13 @@
 namespace API_Restful.Migrations
 {
     /// <inheritdoc />
-    public partial class PopulandoBooks : Migration
+    public partial class PopularBook : Migration
     {
-		/// <inheritdoc />
-		protected override void Up(MigrationBuilder migrationBuilder)
-		{
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
 			migrationBuilder.Sql(@"
-                INSERT INTO Book (title, author, price, launch_date) VALUES
+                INSERT INTO ""Book"" (title, author, price, launch_date) VALUES
                 ('Clean Code', 'Robert C. Martin', 49.90, '2008-08-01'),
                 ('The Pragmatic Programmer', 'Andrew Hunt, David Thomas', 59.90, '1999-10-30'),
                 ('Design Patterns', 'Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides', 79.90, '1994-10-31'),

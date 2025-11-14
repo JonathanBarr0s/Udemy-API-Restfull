@@ -15,7 +15,8 @@ namespace API_Restful.Data.Context
 			}
 
 			services.AddDbContext<AppDbContext>(options =>
-				options.UseSqlServer(connectionString));
+				options.UseNpgsql(connectionString));  
+
 			return services;
 		}
 	}
