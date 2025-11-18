@@ -50,6 +50,7 @@ jobs:
       run: docker compose build
       working-directory: .
 
+
     - name: Push to Docker Hub Container Registry
       run: |
         docker tag ${{secrets.DOCKER_USERNAME}}/apirestful:latest ${{secrets.DOCKER_USERNAME}}/apirestful:${{github.run_id}}
