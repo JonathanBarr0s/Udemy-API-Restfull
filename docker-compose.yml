@@ -3,7 +3,8 @@ services:
     image: jonathanbarr0s/apirestful:latest
     build:
       context: .
-      dockerfile: API-Restful/Dockerfile
+      dockerfile: Dockerfile
+
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
