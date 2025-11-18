@@ -48,7 +48,7 @@ jobs:
 
     - name: Docker Compose Build
       run: docker compose build
-      working-directory: ./API-Restful
+      working-directory: .
 
     - name: Push to Docker Hub Container Registry
       run: |
